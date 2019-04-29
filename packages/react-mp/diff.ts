@@ -1,3 +1,7 @@
+/**
+ * diff 差分算法
+ */
+
 import cvt from "./cvt";
 import { goto } from "./utils";
 import * as React from "react";

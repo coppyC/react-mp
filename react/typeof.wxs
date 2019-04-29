@@ -1,0 +1,5 @@
+module.exports = function(data) {
+  if(data === undefined || data === null)
+    return null
+  return data.constructor
+}

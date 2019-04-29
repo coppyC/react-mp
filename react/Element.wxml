@@ -1,0 +1,21 @@
+<wxs src="./typeof.wxs" module="typeof" />
+<wxs src="./console.wxs" module="console" />
+<wxs src="./safe.wxs" module="safe" />
+
+<template name="img">
+  <image bind:tap="{{safe.event(event, 'onClick')}}"
+    class="{{props.className}}"
+    style="{{safe.string(props.style)}}"
+    src="{{props.src}}"
+    hidden="{{props.hidden}}"
+  />
+</template>
+
+<template name="div">
+  <view bind:tap="{{safe.event(event, 'onClick')}}"
+    class="{{props.className}}"
+    style="{{safe.string(props.style)}}"
+    hidden="{{props.hidden}}" >
+    <include src="./children.wxml" />
+  </view>
+</template>

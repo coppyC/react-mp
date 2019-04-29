@@ -1,0 +1,7 @@
+<wxs src="./typeof.wxs" module="typeof" />
+<wxs src="./console.wxs" module="console" />
+<import src="./Element.wxml"></import>
+
+<block wx:if="{{type && event}}">
+<template is="{{type}}" data="{{props:props, event:event}}" />
+</block>

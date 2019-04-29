@@ -1,0 +1,9 @@
+module.exports.event = function(event, evtName) {
+  return event[evtName]
+    ? evtName
+    : ''
+}
+
+module.exports.string = function(string) {
+  return string || ''
+}
