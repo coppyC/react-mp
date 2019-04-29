@@ -1,4 +1,7 @@
 import cvt from "./cvt";
+import {isValidElement} from 'react'
+
+type UpdaterClass = typeof import('./Updater').default
 
 function childrenCvt(children, path, ...others) {
   if(!children) return ''
@@ -13,10 +16,9 @@ function renderNode(
   element: ReactElement,
   path: string,
   instances: Instances,
-  Updater: typeof import('./Updater').default
+  Updater: UpdaterClass
 ) {
-  if(!element) return ''
-  if(typeof element !== 'object') return element
+  if(!isValidElement(element)) return cvt.child(element)
   if(typeof element.type === 'string') {
     const { type, key } = element
     const { style, children, ...props } = element.props
@@ -53,7 +55,7 @@ export default function(
   element: ReactElement,
   path: string,
   instances: Instances,
-  Updater: typeof import('./Updater').default
+  Updater: UpdaterClass
 ) {
   return renderNode(element, path, instances, Updater)
 }

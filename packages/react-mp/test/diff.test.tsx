@@ -143,5 +143,40 @@ describe('diff 算法', () => {
     expect(diffKeys.includes(expectKey)).toBeTruthy
     expect(diffResult[expectKey]).toBe('123')
   })
-  // TODO: 测试组件
+  test('&& 运算符测试', () => {
+    const jsx0 = <div>{false && <div>123</div>}</div>
+    const jsx1 = <div>{true && <div>123</div>}</div>
+    const diffResult = diff(jsx0, jsx1, 'root')
+    const diffKeys = Object.keys(diffResult)
+    const expectKey = 'root.props.children'
+    expect(diffKeys.length).toBe(1)
+    expect(diffKeys.includes(expectKey)).toBeTruthy
+    expect(diffResult[expectKey]).toBe('')
+  })
+  test('默认属性为 true', () => {
+    // https://react.docschina.org/docs/jsx-in-depth.html#%E5%B1%9E%E6%80%A7%E9%BB%98%E8%AE%A4%E4%B8%BAtrue
+    // 两者等价，对比结果为空
+    const jsx0 = <div hidden />
+    const jsx1 = <div hidden={true} />
+    const diffResult = diff(jsx0, jsx1, 'root')
+    const diffKeys = Object.keys(diffResult)
+    expect(diffKeys.length).toBe(0)
+  })
+  test('忽略 布尔值、null 和 undefined', () => {
+    const jsx0 = <div />
+    let diffResult, diffKeys
+    const run = (jsx1) => {
+      diffResult = diff(jsx0, jsx1, 'root')
+      diffKeys = Object.keys(diffResult)
+      expect(diffKeys.length).toBe(0)
+    }
+    // 下面各种写法与 <div /> 等价
+    // https://react.docschina.org/docs/jsx-in-depth.html#%E5%B8%83%E5%B0%94%E5%80%BC%E3%80%81null-%E5%92%8C-undefined-%E8%A2%AB%E5%BF%BD%E7%95%A5
+    run(<div></div>)
+    run(<div>{true}</div>)
+    run(<div>{false}</div>)
+    run(<div>{null}</div>)
+    run(<div>{undefined}</div>)
+  })
+  // TODO: 测试 自定义组件
 })

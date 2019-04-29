@@ -1,21 +1,21 @@
 import cvt from "./cvt";
 import { goto } from "./utils";
 import * as React from "react";
-// import render from './render'
 
+const {isValidElement} = React
 
 function diffElement(
   newEl: React.ReactElement,
   oldEl: React.ReactElement,
   key: string,
-  callback: (key: string, value: any) => void,
+  callback: (key: string, value: any, oldValue: any) => void,
 ) {
   function cd(dir: string) {
     key = goto(key, dir)
   }
   if(newEl.type !== oldEl.type) {
     // 不同类型，直接重构
-    callback(key, newEl)
+    callback(key, newEl, oldEl)
   } else {
     // 同个类型，属性可能改变，进一步对比 props 中的内容
     cd('props') // .props
@@ -27,10 +27,10 @@ function diffElement(
         const oldStyle = cvt.style(oldProps[name])
         const newStyle = cvt.style(newProps[name])
         if(oldStyle !== newStyle)
-          callback(`${key}.${name}`, newStyle)
+          callback(`${key}.${name}`, newStyle, undefined)
       } else {
         if(newProps[name] !== oldProps[name]) {
-          callback(`${key}.${name}`, newProps[name])
+          callback(`${key}.${name}`, newProps[name], undefined)
         }
       }
     }
@@ -39,24 +39,30 @@ function diffElement(
       if(typeof newChild ==='object' && typeof oldChild ==='object') { // 两者是 元素或 元素组
         if(newChild instanceof Array && oldChild instanceof Array) { // 是数组
           if(newChild.length !== oldChild.length) {
-            callback(key, newChild)
+            callback(key, newChild, oldChild)
           } else {
             for(let i in newChild) {
               if(newChild[i] !== oldChild[i]) {
                 if(React.isValidElement(newChild[i]) && React.isValidElement(oldChild[i]))
                   diffElement(newChild[i], oldChild[i], `${key}[${i}]`, callback)
                 else
-                  callback(`${key}[${i}]`, newChild[i])
+                  callback(`${key}[${i}]`, newChild[i], oldChild[i])
               }
             }
           }
         } else if(!(newChild instanceof Array) && !(oldChild instanceof Array)) {  // 都元素
           diffElement(newChild, oldChild, `${key}`, callback)
         } else {  // 一个数组一个元素等。。
-          callback(key, newChild)
+          callback(key, newChild, oldChild)
         }
       } else {
-        callback(key, newChild)
+        if(!isValidElement(newChild) && !isValidElement(oldChild)) {
+          // 忽略 布尔值、null 和 undefined
+          if(cvt.child(newChild) !== cvt.child(oldChild))
+            callback(key, newChild, oldChild)
+        } else {
+          callback(key, newChild, oldChild)
+        }
       }
     }
   }
@@ -68,10 +74,13 @@ export default function(
   path = ''
 ): any {
   const result = Object.create(null)
-  diffElement(newDom, oldDom, path, function(key, value) {
-    // TODO: value 如果 是刚刚新建的，要 cvt 一下，在这里做还是在外面做？
-    // 或者是 把 newDom 和 oldDom 在外面弄好了再带进来？
-    result[key] = value
+  diffElement(newDom, oldDom, path, function(key, value, oldValue) {
+    if(oldValue instanceof Array || isValidElement(oldValue)) {
+      // TODO: @生命周期 unmount Element
+    }
+    result[key] = value instanceof Array || isValidElement(value)
+      ? value // TODO: 新元素 mount 等
+      : cvt.child(value)
   })
   return result
 }
