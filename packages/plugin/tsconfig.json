@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2015",
     "module": "commonjs",
     "esModuleInterop": true,
     "removeComments": false,
@@ -8,20 +8,18 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
     "noImplicitThis": true,
     "outDir": "dist",
-    "strict": true,
     "strictNullChecks": true,
-    "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
     "jsx": "react"
   },
   "exclude": [
-    "**/test/**",
+    "**/dist/**",
+    "test/**",
+    "data/**",
     "**/*.test.ts",
     "**/*.test.tsx",
-  ],
-  "compileOnSave": true
+  ]
 }

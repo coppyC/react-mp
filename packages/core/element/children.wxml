@@ -1,0 +1,23 @@
+<!-- include by Element -->
+
+<!-- 多个子节点 -->
+<block wx:if="{{typeof(props.children)=='Array'}}">
+  <block wx:for="{{props.children}}" wx:key="{{item.key||index}}">
+    <!-- 组件节点 -->
+    <block wx:if="{{typeof(item)==='Object'}}">
+      <node type="{{item.type}}" props="{{item.props}}" />
+    </block>
+    <!-- 文本节点 -->
+    <block wx:elif="{{typeof(item)!==null}}">
+      {{item}}
+    </block>
+  </block>
+</block>
+<!-- 组件节点 -->
+<block wx:elif="{{typeof(props.children)=='Object'}}">
+  <node type="{{props.children.type}}" props="{{props.children.props}}" />
+</block>
+<!-- 文本节点 -->
+<block wx:elif="{{typeof(props.children)!==null}}">
+  {{props.children}}
+</block>

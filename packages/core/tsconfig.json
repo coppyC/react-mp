@@ -1,27 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "es2015",
+    "module": "es6",
     "esModuleInterop": true,
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    // "declaration": true,
     "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
     "noImplicitThis": true,
     "outDir": "dist",
     "strict": true,
     "strictNullChecks": true,
-    "sourceMap": true,
     "baseUrl": ".",
     "rootDir": ".",
     "jsx": "react"
   },
   "exclude": [
-    "**/test/**",
+    "test/**",
+    "data/**",
     "**/*.test.ts",
     "**/*.test.tsx",
-  ],
-  "compileOnSave": true
+  ]
 }

@@ -1,0 +1,14 @@
+{
+  "name": "react-mp",
+  "version": "0.8.2",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "typings": "./@types/index.d.ts",
+  "files": ["dist", "element", "@types"],
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "@react-mp/types-wx": "^1.0.0"
+  }
+}
