@@ -1,9 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "jest --watch",
-    "dev": "webpack -w",
-    "build": "webpack"
+    "test": "jest",
+    "dev": "jest --watch"
   },
   "workspaces": [
     "packages/*"
@@ -11,7 +10,6 @@
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "@types/react": "^16.8.14",
-    "glob": "^7.1.3",
     "jest": "^24.7.1",
     "react": "^16.8.6",
     "ts-jest": "^24.0.2",

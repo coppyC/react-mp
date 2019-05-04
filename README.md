@@ -1,14 +1,17 @@
 # react-mp
+[![Build Status](https://www.travis-ci.org/coppyC/react-mp.svg?branch=master)](https://www.travis-ci.org/coppyC/react-mp)
+[![coverage](https://codecov.io/gh/coppyC/react-mp/branch/master/graph/badge.svg)](https://codecov.io/gh/coppyC/react-mp)
+![download](https://img.shields.io/npm/dt/react-mp.svg)
+![version](https://img.shields.io/npm/v/react-mp.svg)
+
 一个跑在微信小程序的 react 框架
-
-
 
 # 体验
 ## 注意！！
 ⚠️  目前本项目还处于开发中，不可投入使用，但是仍然可以尝鲜
 ## 安装
-下载模版代码,
-然后
+[点击下载模版代码](https://github.com/coppyC/react-mp/archive/template.zip),
+然后，你懂的
 ```bash
 yarn
 yarn dev

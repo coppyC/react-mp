@@ -7,7 +7,6 @@
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    // "declaration": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "outDir": "dist",
