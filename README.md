@@ -1,8 +1,9 @@
 # react-mp
 [![Build Status](https://www.travis-ci.org/coppyC/react-mp.svg?branch=master)](https://www.travis-ci.org/coppyC/react-mp)
 [![coverage](https://codecov.io/gh/coppyC/react-mp/branch/master/graph/badge.svg)](https://codecov.io/gh/coppyC/react-mp)
-![download](https://img.shields.io/npm/dt/react-mp.svg)
 ![version](https://img.shields.io/npm/v/react-mp.svg)
+![download](https://img.shields.io/npm/dt/react-mp.svg)
+![GitHub](https://img.shields.io/github/license/coppyc/react-mp.svg)
 
 一个跑在微信小程序的 react 框架
 
