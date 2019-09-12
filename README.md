@@ -1,3 +1,7 @@
+# 本项目已停止维护
+本项目本是我一时兴起，现已无精力维护
+目前发现相似项目 https://github.com/remaxjs/remax
+
 # react-mp
 [![Build Status](https://www.travis-ci.org/coppyC/react-mp.svg?branch=master)](https://www.travis-ci.org/coppyC/react-mp)
 [![coverage](https://codecov.io/gh/coppyC/react-mp/branch/master/graph/badge.svg)](https://codecov.io/gh/coppyC/react-mp)
